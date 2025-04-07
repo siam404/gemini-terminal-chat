@@ -41,7 +41,7 @@ A simple terminal-based chat application that allows you to interact with Google
 - **Build from source**: Run `./build.sh`
 - **Manual Python setup**: Install dependencies and run with Python
 
-For detailed instructions, see the [full README](README.md).
+For detailed instructions, see the [full installation process](Installation.md).
 
 ## Usage
 
