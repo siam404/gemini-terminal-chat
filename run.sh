@@ -1,24 +1,42 @@
 #!/bin/bash
 
-# Check if the executable exists
-if [ -f "./dist/gemini_chat" ]; then
-    # Run the executable
-    ./dist/gemini_chat
-elif [ -f "./gemini" ]; then
-    # Run the symbolic link
-    ./gemini
-else
-    echo "Executable not found. Please run ./build.sh first to build the application."
-    echo "Do you want to build the application now? (y/n)"
-    read answer
-    if [ "$answer" == "y" ] || [ "$answer" == "Y" ]; then
-        ./build.sh
-        if [ -f "./dist/gemini_chat" ]; then
-            ./dist/gemini_chat
-        else
-            echo "Build failed. Please check the error messages above."
-        fi
-    else
-        echo "Build cancelled. Exiting."
-    fi
-fi 
+# Configuration variables
+CONFIG_DIR="$HOME/.config/gemini-chat"
+API_KEY_FILE="$CONFIG_DIR/api_key.env"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Create configuration directory if it doesn't exist
+mkdir -p "$CONFIG_DIR"
+
+# Check if API key exists in the config directory
+if [ ! -f "$API_KEY_FILE" ]; then
+    echo "No API key found. You'll need a Google API key to use this application."
+    echo "Get your API key from https://makersuite.google.com/app/apikey"
+    read -p "Enter your Google API key: " API_KEY
+    
+    # Save API key to config file
+    echo "GOOGLE_API_KEY=$API_KEY" > "$API_KEY_FILE"
+    echo "API key saved successfully!"
+fi
+
+# Create a virtual environment if it doesn't exist
+if [ ! -d "$SCRIPT_DIR/venv" ]; then
+    echo "Setting up virtual environment..."
+    python3 -m venv "$SCRIPT_DIR/venv"
+fi
+
+# Activate virtual environment
+source "$SCRIPT_DIR/venv/bin/activate"
+
+# Install requirements if needed
+if [ ! -f "$SCRIPT_DIR/.requirements_installed" ]; then
+    echo "Installing requirements..."
+    pip install -r "$SCRIPT_DIR/requirements.txt"
+    touch "$SCRIPT_DIR/.requirements_installed"
+fi
+
+# Copy API key to local .env for the application
+cp "$API_KEY_FILE" "$SCRIPT_DIR/.env"
+
+# Run the application
+python "$SCRIPT_DIR/gemini.py" 

@@ -1,26 +1,29 @@
 #!/bin/bash
 
-# Exit on error
-set -e
+# Get the absolute path to the directory containing this script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Check if running as root
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root (use sudo)"
-  exit 1
+echo "Installing Gemini Terminal Chat system-wide..."
+
+# Create the symlink in /usr/local/bin
+if [ -w /usr/local/bin ]; then
+    # User has write permission to /usr/local/bin
+    ln -sf "$SCRIPT_DIR/run.sh" /usr/local/bin/gemini-chat
+    echo "Installation successful! You can now run 'gemini-chat' from anywhere."
+else
+    # User doesn't have write permission, use sudo
+    echo "This installation requires administrator privileges to create a symlink in /usr/local/bin."
+    sudo ln -sf "$SCRIPT_DIR/run.sh" /usr/local/bin/gemini-chat
+    
+    if [ $? -eq 0 ]; then
+        echo "Installation successful! You can now run 'gemini-chat' from anywhere."
+    else
+        echo "Installation failed. Please try running this script with sudo."
+        exit 1
+    fi
 fi
 
-echo "==== Installing Gemini Terminal Chat ===="
+# Make sure the run.sh script is executable
+chmod +x "$SCRIPT_DIR/run.sh"
 
-# Check if the executable exists
-if [ ! -f "./dist/gemini_chat" ]; then
-  echo "Executable not found. Building it now..."
-  ./build.sh
-fi
-
-# Copy the executable to /usr/local/bin
-echo "Installing to /usr/local/bin/gemini"
-cp ./dist/gemini_chat /usr/local/bin/gemini
-chmod +x /usr/local/bin/gemini
-
-echo "==== Installation complete! ===="
-echo "You can now run 'gemini' from anywhere in your terminal." 
+echo "Done!" 

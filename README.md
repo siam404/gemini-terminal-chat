@@ -1,70 +1,105 @@
 # Gemini Terminal Chat
 
-![Gemini Terminal Chat](https://img.shields.io/badge/Gemini-Terminal%20Chat-blue)
-![License](https://img.shields.io/github/license/YOUR_USERNAME/gemini-terminal-chat)
-
-A simple terminal-based chat application that allows you to interact with Google's Gemini AI models directly from your terminal.
+A simple and powerful terminal-based chat application that uses Google's Gemini AI models. Chat with Gemini directly from your terminal with support for multiple models including Gemini 1.5, 2.0, and 2.5.
 
 ![Demo](demo.gif)
 
 ## Features
 
-- 🤖 Chat with Google's Gemini AI models directly from your terminal
-- 🚀 Support for multiple Gemini models (2.5 Pro, 2.0 Flash, 1.5 Flash)
-- 🎯 Direct-to-the-point AI responses
-- 🔒 Secure API key storage
-- 🧠 Simple and intuitive interface
+- Clean terminal interface for chatting with Gemini AI
+- Support for multiple Gemini models (1.5 Flash, 2.0 Flash, 2.5 Pro)
+- Handles multiline input for code and long text
+- Automatically saves your API key for future sessions
+- Colorized output for better readability
 
-## Prerequisites
+## Installation
 
+### Prerequisites
+
+- Python 3.6 or higher
 - A Google API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-- Linux/macOS system (Windows support via WSL)
 
-## Quick Start
+### Quick Installation
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/siam404/gemini-terminal-chat.git
+   git clone https://github.com/yourusername/gemini-terminal-chat.git
    cd gemini-terminal-chat
    ```
 
-2. Run the application:
+2. Make the run script executable:
+   ```bash
+   chmod +x run.sh
+   ```
+
+3. Run the application:
    ```bash
    ./run.sh
    ```
 
-## Available Installation Methods
+The script will:
+- Ask for your Google API key on first run
+- Create a virtual environment automatically
+- Install required dependencies
+- Launch the chat application
 
-- **Pre-built executable**: Just run `./run.sh`
-- **System-wide installation**: Run `sudo ./install.sh`
-- **User-level alias**: Run `./setup-alias.sh`
-- **Build from source**: Run `./build.sh`
-- **Manual Python setup**: Install dependencies and run with Python
+### Manual Installation
 
-For detailed instructions, see the [full installation process](Installation.md).
+If you prefer to set things up manually:
+
+1. Create a virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Create a `.env` file with your API key:
+   ```bash
+   echo "GOOGLE_API_KEY=your_api_key_here" > .env
+   ```
+
+4. Run the application:
+   ```bash
+   python gemini.py
+   ```
 
 ## Usage
 
-1. When you first run the program, you'll be asked to enter your Google API key
-2. Select the model you want to use
-3. Start chatting!
-4. Type 'exit' or 'quit' to end the conversation
+1. After starting the application, you'll be prompted to select a model:
+   - 1: Gemini 2.5 Pro (experimental)
+   - 2: Gemini 2.0 Flash
+   - 3: Gemini 1.5 Flash
 
-## Contributing
+2. Start chatting! Type your message and press Enter to send.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+3. For multiline input, you can:
+   - Use `<multiline>` and `</multiline>` tags
+   - Use triple backticks (```) at the start and end of your content
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+4. To exit the chat, type `exit` or `quit`.
+
+## System-Wide Installation
+
+To make the chat available system-wide:
+
+```bash
+# Create a symlink to the run.sh script in a directory that's in your PATH
+sudo ln -s $(pwd)/run.sh /usr/local/bin/gemini-chat
+
+# Now you can run the chat from anywhere with:
+gemini-chat
+```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is open-source under the MIT License.
 
-## Acknowledgments
+## Acknowledgements
 
-- Google Gemini API
-- PyInstaller for creating the standalone executable 
+- Google Generative AI for providing the Gemini API
+- Colorama for terminal coloring 
