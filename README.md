@@ -77,9 +77,7 @@ If you prefer to set things up manually:
 
 2. Start chatting! Type your message and press Enter to send.
 
-3. For multiline input, you can:
-   - Use `<multiline>` and `</multiline>` tags
-   - Use triple backticks (```) at the start and end of your content
+3. Support multiline paste without any errors
 
 4. To exit the chat, type `exit` or `quit`.
 
