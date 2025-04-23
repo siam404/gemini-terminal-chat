@@ -19,56 +19,77 @@ A simple and powerful terminal-based chat application that uses Google's Gemini 
 - Python 3.6 or higher
 - A Google API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
 
-### Quick Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/siam404/gemini-terminal-chat.git
-   cd gemini-terminal-chat
-   ```
+### 1. Clone the Repository
 
-2. Make the run script executable:
-   ```bash
-   chmod +x run.sh
-   ```
+```bash
+git clone https://github.com/siam404/terminal-gemini.git
+cd terminal-gemini
+```
 
-3. Run the application:
-   ```bash
-   ./run.sh
-   ```
+### 2. Create a Virtual Environment
 
-The script will:
-- Ask for your Google API key on first run
-- Create a virtual environment automatically
-- Install required dependencies
-- Launch the chat application
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-### Manual Installation
+### 3. Install Dependencies
 
-If you prefer to set things up manually:
+```bash
+pip install -r requirements.txt
+```
 
-1. Create a virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+### 4. Configure `.env`
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+Create a `.env` file and add your Gemini API key like so:
 
-3. Create a `.env` file with your API key:
-   ```bash
-   echo "GOOGLE_API_KEY=your_api_key_here" > .env
-   ```
+```env
+GEMINI_API_KEY=your_api_key_here
+```
 
-4. Run the application:
-   ```bash
-   python gemini.py
-   ```
+## 📁 Final Project Structure
 
-## Usage
+```
+terminal-gemini/
+├── gemini.py           # Main script
+├── requirements.txt    # Python dependencies
+├── .env                # Environment variables (e.g., API key)
+└── venv/               # Python virtual environment
+```
+
+
+## 🚀 Make It Globally Accessible
+
+
+### 1. Make the Script Executable
+
+```bash
+chmod +x gemini.py
+```
+
+### 2. Create a Symlink
+
+```bash
+mkdir -p ~/.local/bin
+ln -s /home/sam/Documents/terminal-gemini/gemini.py ~/.local/bin/gemini
+```
+
+### 3. Add to Your PATH (if not already)
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+## ✅ Usage
+
+Now you can run the chatbot from **anywhere** in your terminal with:
+
+```bash
+gemini
+```
+No need to activate the virtual environment manually!
 
 1. After starting the application, you'll be prompted to select a model:
    - 1: Gemini 2.5 Pro (experimental)
@@ -81,21 +102,15 @@ If you prefer to set things up manually:
 
 4. To exit the chat, type `exit` or `quit`.
 
-## System-Wide Installation
 
-To make the chat available system-wide:
+## 📄 License
 
-```bash
-# Create a symlink to the run.sh script in a directory that's in your PATH
-sudo ln -s $(pwd)/run.sh /usr/local/bin/gemini-chat
+MIT License — use freely, modify, and improve.
 
-# Now you can run the chat from anywhere with:
-gemini-chat
-```
+## ✨ Author
 
-## License
-
-This project is open-source under the MIT License.
+Made by **Ahmed Sam**  
+🛠️ Terminal wizard, Python tinkerer, and AI explorer
 
 ## Acknowledgements
 
