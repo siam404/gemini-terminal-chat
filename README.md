@@ -23,7 +23,7 @@ A simple and powerful terminal-based chat application that uses Google's Gemini 
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/gemini-terminal-chat.git
+   git clone https://github.com/siam404/gemini-terminal-chat.git
    cd gemini-terminal-chat
    ```
 
