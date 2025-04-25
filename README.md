@@ -24,7 +24,7 @@ A simple and powerful terminal-based chat application that uses Google's Gemini 
 
 ```bash
 git clone https://github.com/siam404/gemini-terminal-chat.git
-cd terminal-gemini
+cd gemini-terminal-chat
 ```
 
 ### 2. Create a Virtual Environment
